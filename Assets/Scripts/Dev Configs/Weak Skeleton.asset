@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1beae39e305e3be48a55e1b93dcab4a8, type: 3}
+  m_Name: Weak Skeleton
+  m_EditorClassIdentifier: 
+  name: skelet
+  speed: 1
+  exp: 10
+  hp: 4
+  size: 1
