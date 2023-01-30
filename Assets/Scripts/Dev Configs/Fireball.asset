@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   id: fireball
-  coldown: 3
+  cooldown: 5
   speed: 1
-  damage: 30
+  damage: 40
   level: 1
   isDestroyOnCollision: 1
-  castStrategy: 2
+  castStrategy: 0
+  prefab: {fileID: 588500097662705715, guid: 7eafedcac68c21f4e9dc65b47011cc10, type: 3}

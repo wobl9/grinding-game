@@ -1,14 +1,8 @@
 using UnityEngine;
 
-public class Projectile : Spell
+
+public class Projectile : SpellObject
 {
-
-    public Projectile(SpellConfig config)
-    {
-        this.config = config;
-    }
-
-    public override SpellConfig config { get; }
 
     private const float EXTEND_DIRECTION = 3f;
     private const float LIFE_TIME = 5f;
@@ -27,12 +21,11 @@ public class Projectile : Spell
         {
             moveDirection = CalculacteMoveDirection(transform.position, CreateRandomVector());
         }
-
     }
 
     void Update()
     {
-        Vector3 movement = Vector3.MoveTowards(transform.position, moveDirection, config.speed * Time.deltaTime);
+        Vector3 movement = Vector3.MoveTowards(transform.position, moveDirection, speed * Time.deltaTime);
         if (Vector3.Distance(movement, transform.position) != 0)
         {
             transform.position = movement;

@@ -17,5 +17,5 @@ MonoBehaviour:
   - {fileID: 3640362767718827348, guid: af2bb6aec2599c447ab4b9af1f1d4133, type: 3}
   spawnRadius: 15
   spawnRate: 1
-  spawnDelay: 1
-  allowSpawn: 0
+  spawnDelay: 0.5
+  allowSpawn: 1

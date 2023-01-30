@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Weak Skeleton
   m_EditorClassIdentifier: 
   name: skelet
-  speed: 1
+  speed: 2
   exp: 10
   hp: 4
   size: 1
