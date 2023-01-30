@@ -3,8 +3,19 @@ using UnityEngine;
 
 public class SpellsController : MonoBehaviour
 {
-    private readonly Dictionary<string, Spell> spells = new();
+    [SerializeField] List<SpellObject> testSpells;
+    private readonly Dictionary<string, SpellObject> spells = new();
     private readonly Dictionary<string, float> spellsCooldowns = new();
+
+
+    private void Awake()
+    {
+        foreach (SpellObject spell in testSpells)
+        { 
+            spells.Add(spell.id, spell);
+            spellsCooldowns.Add(spell.id, 0.0f);
+        }
+    }
 
     private void Update()
     {
@@ -15,7 +26,7 @@ public class SpellsController : MonoBehaviour
         }
     }
 
-    public void AddSpell(Spell spell)
+    public void AddSpell(SpellObject spell)
     {
         spells.Add(spell.id, spell);
         spellsCooldowns.Add(spell.id, 0.0f);
@@ -30,7 +41,7 @@ public class SpellsController : MonoBehaviour
     {
         if (spellsCooldowns[id] <= 0.0f)
         {
-            Spell spell = spells[id];
+            SpellObject spell = spells[id];
             if (spell.castStrategy == CastStrategy.ANY)
             {
                 Instantiate(spell.prefab, transform.position, transform.rotation);

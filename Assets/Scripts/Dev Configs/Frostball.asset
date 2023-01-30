@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Frostball
   m_EditorClassIdentifier: 
   id: frostball
-  coldown: 1
+  cooldown: 2
   speed: 2
   damage: 10
   level: 1
   isDestroyOnCollision: 1
-  castStrategy: 2
+  castStrategy: 0
+  prefab: {fileID: 8286914864958913957, guid: a10c5d8af5e29084fa3f72849cbef013, type: 3}

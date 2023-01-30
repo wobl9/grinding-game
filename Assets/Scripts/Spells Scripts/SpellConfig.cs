@@ -1,10 +1,10 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Attack", menuName = "Player Attack")]
-public class SpellConfig : ScriptableObject
+public class Spell : ScriptableObject
 {
     public string id;
-    public float coldown;
+    public float cooldown;
     public float speed;
     public float damage;
     public int level = 1;

@@ -1,15 +1,16 @@
 using UnityEngine;
 
-public abstract class Spell : MonoBehaviour
-{
-    public abstract SpellConfig config { get; }
-    public string id { get => config.id; }
-    public float cooldown { get => config.coldown; }
-    public float damage { get => config.damage; }
-    public float speed { get => config.speed; }
-    public CastStrategy castStrategy { get => config.castStrategy; }
 
-    public GameObject prefab { get => config.prefab; }
+public abstract class SpellObject : MonoBehaviour
+{
+    [SerializeField] private Spell model;
+    public string id { get => model.id; }
+    public float cooldown { get => model.cooldown; }
+    public float damage { get => model.damage; }
+    public float speed { get => model.speed; }
+    public CastStrategy castStrategy { get => model.castStrategy; }
+
+    public GameObject prefab { get => model.prefab; }
 
     protected GameObject FindClosestEnemy()
     {
@@ -33,10 +34,9 @@ public abstract class Spell : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("collision occures 1");
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.SendMessage("ApplyDamage", config.damage);
+            collision.gameObject.SendMessage("ApplyDamage", model.damage);
             Destroy(gameObject);
         }
     }
