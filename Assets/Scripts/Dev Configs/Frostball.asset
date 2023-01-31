@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Frostball
   m_EditorClassIdentifier: 
   id: frostball
-  cooldown: 2
+  cooldown: 1
   speed: 2
   damage: 10
   level: 1

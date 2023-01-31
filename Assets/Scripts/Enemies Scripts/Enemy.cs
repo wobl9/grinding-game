@@ -11,6 +11,7 @@ public abstract class Enemy : MonoBehaviour
     protected int size;
     protected int exp;
     protected Transform player;
+    protected PlayerLevelManager playerLevelManager;
     public EnemyScriptableObject enemyScriptableObject;
     private Rigidbody2D rigidBody;
 
@@ -25,6 +26,7 @@ public abstract class Enemy : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         player = FindObjectOfType<PlayerController>().GetComponent<Transform>();
+        playerLevelManager = FindObjectOfType<PlayerLevelManager>();
         transform.tag = TAG;
         
     }
@@ -51,6 +53,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (hp <= 0)
         {
+            playerLevelManager.OnExpirienceGained(exp);
             DestroySelf();
         }
     }
