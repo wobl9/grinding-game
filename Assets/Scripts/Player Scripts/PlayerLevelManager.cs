@@ -10,7 +10,7 @@ public class PlayerLevelManager: MonoBehaviour
     private int currentLevel = 1;
     protected Dictionary<int, int> expirienceForLevel = new();
 
-    public void OnExpirienceGained(int expirience)
+    public void GainExpirience(int expirience)
     {
         currentExpirience += expirience;
         Debug.Log($"current exp is {currentExpirience}");

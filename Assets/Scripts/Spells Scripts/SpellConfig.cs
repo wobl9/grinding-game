@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Attack", menuName = "Player Attack")]
+[CreateAssetMenu(fileName = "Attack", menuName = "MyGameObject/Player Attack")]
 public class Spell : ScriptableObject
 {
     public string id;

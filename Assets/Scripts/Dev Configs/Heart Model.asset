@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1beae39e305e3be48a55e1b93dcab4a8, type: 3}
-  m_Name: Weak Skeleton
+  m_Script: {fileID: 11500000, guid: edbe8770ee65f9a49bcf13029683c584, type: 3}
+  m_Name: Heart Model
   m_EditorClassIdentifier: 
-  name: skelet
-  speed: 2
-  exp: 15
-  hp: 4
-  size: 1
+  id: heal
+  healAmount: 25
+  prefab: {fileID: 1436121714650384918, guid: 7bb774017595cc4409b1000c8c264c9d, type: 3}

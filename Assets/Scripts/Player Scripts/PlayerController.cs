@@ -4,12 +4,31 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public float speed = 1f;
-    [SerializeField] private Projectile fireball;
+    [SerializeField] protected ProgressBarObject healthBar;
+    public float speed = 2f;
 
-    void Update()
+    private HealthSystem healthSytem = new(100, 100);
+    
+
+    private void Start()
+    {
+        healthSytem.OnDeath += OnDeath;
+        healthBar.Setup(healthSytem);
+    }
+
+    private void Update()
     {
         MovePlayer();
+    }
+
+    public void Heal(int amount)
+    {
+        healthSytem.Heal(amount);
+    }
+
+    public void Damage(int amount)
+    {
+        healthSytem.Damage(amount);
     }
 
     private void MovePlayer()
@@ -19,4 +38,10 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0.0f);
         transform.position += movement * speed * Time.deltaTime;
     }
+
+    private void OnDeath(object Sender, System.EventArgs args)
+    {
+        Debug.Log("no hp. player died");
+    }
+
 }

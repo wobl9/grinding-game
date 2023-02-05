@@ -5,15 +5,18 @@ public abstract class Enemy : MonoBehaviour
 {
 
     public const string TAG = "Enemy";
+    private const float DAMAGE_DELAY = 0.3f;
 
     protected int hp;
     protected int speed;
     protected int size;
     protected int exp;
-    protected Transform player;
+    protected Transform playerTransform;
     protected PlayerLevelManager playerLevelManager;
+    protected PlayerController playerController;
     public EnemyScriptableObject enemyScriptableObject;
     private Rigidbody2D rigidBody;
+    private float lastHitToPlayer = 0f;
 
     public void ApplyDamage(int damage)
     {
@@ -25,10 +28,10 @@ public abstract class Enemy : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
-        player = FindObjectOfType<PlayerController>().GetComponent<Transform>();
-        playerLevelManager = FindObjectOfType<PlayerLevelManager>();
         transform.tag = TAG;
-        
+        playerController = FindObjectOfType<PlayerController>();
+        playerTransform = playerController.GetComponent<Transform>();
+        playerLevelManager = FindObjectOfType<PlayerLevelManager>();   
     }
 
     private void Start()
@@ -53,7 +56,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (hp <= 0)
         {
-            playerLevelManager.OnExpirienceGained(exp);
+            playerLevelManager.GainExpirience(exp);
             DestroySelf();
         }
     }
@@ -62,14 +65,30 @@ public abstract class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Vector2 bounceBackVector = (transform.position - collision.gameObject.transform.position).normalized * 2f;
-            rigidBody.AddForce(bounceBackVector);
+            DamagePlayer();
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DamagePlayer();
+        }
+    }
+
+    private void DamagePlayer()
+    {
+        if(Time.time > lastHitToPlayer + DAMAGE_DELAY)
+        {
+            playerController.Damage(exp);
+            lastHitToPlayer = Time.time;
         }
     }
 
     private void MoveToPlayer()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
 
     }
 }
