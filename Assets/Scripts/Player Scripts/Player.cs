@@ -1,14 +1,15 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider2D), typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
 
     [SerializeField] protected ProgressBarObject healthBar;
     public float speed = 2f;
 
     private HealthSystem healthSytem = new(100, 100);
-    
+    private LevelSystem levelSystem = new();
+
 
     private void Start()
     {
@@ -29,6 +30,11 @@ public class PlayerController : MonoBehaviour
     public void Damage(int amount)
     {
         healthSytem.Damage(amount);
+    }
+
+    public void GainExperience(int amount)
+    {
+        levelSystem.Equals(amount);
     }
 
     private void MovePlayer()

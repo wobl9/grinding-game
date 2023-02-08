@@ -5,10 +5,12 @@ public class HeartObject : Collectable
     [SerializeField] protected HeartModel model;
     public override string Id => model.id;
 
+    public override bool IsSelfDestroyable => false;
+
     protected override void InvokeEffect()
     {
         base.InvokeEffect();
-        FindObjectOfType<PlayerController>().Heal(model.healAmount);
+        FindObjectOfType<Player>().Heal(model.healAmount);
     }
 
 }

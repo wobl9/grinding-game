@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellsController : MonoBehaviour
+public class SpellsSpawner : MonoBehaviour
 {
     [SerializeField] List<SpellObject> testSpells;
     private readonly Dictionary<string, SpellObject> spells = new();

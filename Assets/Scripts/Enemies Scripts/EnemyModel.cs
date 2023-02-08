@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Enemy", menuName = "MyGameObject/Enemy")]
-public class EnemyScriptableObject : ScriptableObject
+public class EnemyModel : ScriptableObject
 {
     public new string name;
     public int speed;

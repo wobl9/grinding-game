@@ -1,19 +1,15 @@
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerLevelManager: MonoBehaviour
+public class LevelSystem
 {
+    public LevelSystem() { }
 
     private const int NEXT_LEVEL_EXPIRIENCE_MULTIPLIER = 110;
     private int maxLevel = 100;
     private int currentExpirience = 0;
     private int currentLevel = 1;
-    protected Dictionary<int, int> expirienceForLevel = new();
 
     public void GainExpirience(int expirience)
     {
         currentExpirience += expirience;
-        Debug.Log($"current exp is {currentExpirience}");
         if (currentExpirience > (currentLevel * NEXT_LEVEL_EXPIRIENCE_MULTIPLIER))
         {
             LevelUp();
@@ -23,7 +19,6 @@ public class PlayerLevelManager: MonoBehaviour
     public void LevelUp()
     {
         SetCurrentLevel(GetCurrentLevel() + 1);
-        Debug.Log($"Level up! current level is {currentLevel}");
     }
 
     public int GetCurrentLevel()

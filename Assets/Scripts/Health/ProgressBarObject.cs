@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class ProgressBarObject : MonoBehaviour
 {
-
-    public HealthSystem healthSytem;
+    private HealthSystem healthSytem;
     private Transform bar;
 
     public void Setup(HealthSystem healthSytem)

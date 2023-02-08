@@ -36,7 +36,7 @@ public abstract class SpellObject : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.SendMessage("ApplyDamage", model.damage);
+            collision.gameObject.SendMessage("Damage", model.damage);
             Destroy(gameObject);
         }
     }

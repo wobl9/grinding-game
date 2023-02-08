@@ -5,23 +5,26 @@ public abstract class Enemy : MonoBehaviour
 {
 
     public const string TAG = "Enemy";
-    private const float DAMAGE_DELAY = 0.3f;
 
-    protected int hp;
-    protected int speed;
-    protected int size;
-    protected int exp;
-    protected Transform playerTransform;
-    protected PlayerLevelManager playerLevelManager;
-    protected PlayerController playerController;
-    public EnemyScriptableObject enemyScriptableObject;
-    private Rigidbody2D rigidBody;
+    protected EnemyModel model;
+
+    private const float DAMAGE_DELAY = 0.3f;
     private float lastHitToPlayer = 0f;
 
-    public void ApplyDamage(int damage)
+    private Rigidbody2D rigidBody;
+    private HealthSystem healthSytem;
+    private Transform playerTransform;
+    private LevelSystem levelSystem;
+    private Player player;
+
+    public void Heal(int amount)
     {
-        hp -= damage;
-        KillIfNoHp(hp);
+        healthSytem.Heal(amount);
+    }
+
+    public void Damage(int amount)
+    {
+        healthSytem.Damage(amount);
     }
 
     private void Awake()
@@ -29,17 +32,10 @@ public abstract class Enemy : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         transform.tag = TAG;
-        playerController = FindObjectOfType<PlayerController>();
-        playerTransform = playerController.GetComponent<Transform>();
-        playerLevelManager = FindObjectOfType<PlayerLevelManager>();   
-    }
-
-    private void Start()
-    {
-        hp = enemyScriptableObject.hp;
-        speed = enemyScriptableObject.speed;
-        size = enemyScriptableObject.size;
-        exp = enemyScriptableObject.exp;
+        player = FindObjectOfType<Player>();
+        playerTransform = player.GetComponent<Transform>();
+        healthSytem = new HealthSystem(model.hp, model.hp);
+        healthSytem.OnDeath += OnDeath;
     }
 
     private void Update()
@@ -47,18 +43,10 @@ public abstract class Enemy : MonoBehaviour
         MoveToPlayer();
     }
 
-    protected void DestroySelf(float delay = 0)
+    private void OnDeath(object Sender, System.EventArgs args)
     {
-        Destroy(this.gameObject, delay);
-    }
-
-    private void KillIfNoHp(int hp)
-    {
-        if (hp <= 0)
-        {
-            playerLevelManager.GainExpirience(exp);
-            DestroySelf();
-        }
+        levelSystem.GainExpirience(model.exp);
+        Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -81,14 +69,13 @@ public abstract class Enemy : MonoBehaviour
     {
         if(Time.time > lastHitToPlayer + DAMAGE_DELAY)
         {
-            playerController.Damage(exp);
+            player.Damage(model.exp);
             lastHitToPlayer = Time.time;
         }
     }
 
     private void MoveToPlayer()
     {
-        transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
-
+        transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, model.speed * Time.deltaTime);
     }
 }
