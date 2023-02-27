@@ -1,16 +1,17 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Attack", menuName = "Player Attack")]
+[CreateAssetMenu(fileName = "Attack", menuName = "MyGameObject/Player Attack")]
 public class Spell : ScriptableObject
 {
     public string id;
     public float cooldown;
     public float speed;
     public float damage;
-    public int level = 1;
+    public int level;
     public bool isDestroyOnCollision;
     public CastStrategy castStrategy;
     public GameObject prefab;
+    public string description;
 
 }
 

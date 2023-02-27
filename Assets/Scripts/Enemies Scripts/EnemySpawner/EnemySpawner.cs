@@ -3,17 +3,13 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public EnemiesSpawnConfig config;
-    private float gameTime;
 
     void Start()
     {
         if(config.allowSpawn)
         {
             InvokeRepeating("SpawnEnemy", config.spawnDelay, config.spawnRate);
-            gameTime = Time.time;
-
         }
- 
     }
 
     void SpawnEnemy()
