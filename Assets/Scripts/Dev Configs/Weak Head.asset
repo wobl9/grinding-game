@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: beholder
   speed: 2
-  exp: 25
+  exp: 80
   hp: 15
   size: 1

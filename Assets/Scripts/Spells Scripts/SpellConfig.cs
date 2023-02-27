@@ -7,10 +7,11 @@ public class Spell : ScriptableObject
     public float cooldown;
     public float speed;
     public float damage;
-    public int level = 1;
+    public int level;
     public bool isDestroyOnCollision;
     public CastStrategy castStrategy;
     public GameObject prefab;
+    public string description;
 
 }
 

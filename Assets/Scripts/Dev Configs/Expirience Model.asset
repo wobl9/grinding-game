@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e59d1dc4e1ed95b4fa45c6c9aa664091, type: 3}
+  m_Script: {fileID: 11500000, guid: eb7e8e5b73ee4734eb56aa5dba567037, type: 3}
   m_Name: Expirience Model
   m_EditorClassIdentifier: 
-  id: expirience
-  expAmount: 200
+  id: exp
+  expAmount: 15
   prefab: {fileID: 1772008167887612066, guid: 171f427b2e5954149a3e4179b2de245a, type: 3}

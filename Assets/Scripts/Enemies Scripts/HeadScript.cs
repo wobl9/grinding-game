@@ -1,4 +1,1 @@
-public class HeadScript : Enemy
-{
-
-}
+public class HeadScript : Enemy { }
