@@ -18,4 +18,4 @@ MonoBehaviour:
   spawnRadius: 15
   spawnRate: 1
   spawnDelay: 0.5
-  allowSpawn: 0
+  allowSpawn: 1

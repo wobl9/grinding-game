@@ -6,7 +6,7 @@ public abstract class Enemy : MonoBehaviour
 
     public const string TAG = "Enemy";
 
-    protected EnemyModel model;
+    [SerializeField] protected EnemyModel model;
 
     private const float DAMAGE_DELAY = 0.3f;
     private float lastHitToPlayer = 0f;
@@ -14,7 +14,6 @@ public abstract class Enemy : MonoBehaviour
     private Rigidbody2D rigidBody;
     private HealthSystem healthSytem;
     private Transform playerTransform;
-    private LevelSystem levelSystem;
     private Player player;
 
     public void Heal(int amount)
@@ -45,7 +44,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void OnDeath(object Sender, System.EventArgs args)
     {
-        levelSystem.GainExpirience(model.exp);
+        player.GainExperience(model.exp);
         Destroy(this.gameObject);
     }
 
@@ -67,7 +66,7 @@ public abstract class Enemy : MonoBehaviour
 
     private void DamagePlayer()
     {
-        if(Time.time > lastHitToPlayer + DAMAGE_DELAY)
+        if (Time.time > lastHitToPlayer + DAMAGE_DELAY)
         {
             player.Damage(model.exp);
             lastHitToPlayer = Time.time;

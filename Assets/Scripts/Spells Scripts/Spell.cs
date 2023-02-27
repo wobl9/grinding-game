@@ -8,6 +8,8 @@ public abstract class SpellObject : MonoBehaviour
     public float cooldown { get => model.cooldown; }
     public float damage { get => model.damage; }
     public float speed { get => model.speed; }
+    public string description { get => model.description; }
+    public int level { get => model.level; }
     public CastStrategy castStrategy { get => model.castStrategy; }
 
     public GameObject prefab { get => model.prefab; }

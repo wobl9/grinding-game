@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6334d2d4b8743d444b19c784f7a05043, type: 3}
+  m_Name: Red star
+  m_EditorClassIdentifier: 
+  id: red star
+  cooldown: 7
+  speed: 3
+  damage: 100
+  level: 1
+  isDestroyOnCollision: 1
+  castStrategy: 0
+  prefab: {fileID: 3360431080115196403, guid: a9c6b644b19d8bf4ab45b97f0aab32bd, type: 3}
+  description: red staaars

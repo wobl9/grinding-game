@@ -8,8 +8,8 @@ public class Player : MonoBehaviour
     public float speed = 2f;
 
     private HealthSystem healthSytem = new(100, 100);
-    private LevelSystem levelSystem = new();
-
+    public LevelSystem levelSystem = new();
+    [SerializeField] public Animator animator;
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
     public void GainExperience(int amount)
     {
-        levelSystem.Equals(amount);
+        levelSystem.GainExpirience(amount);
     }
 
     private void MovePlayer()
@@ -42,6 +42,19 @@ public class Player : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
         float moveHorizontal = Input.GetAxis("Horizontal");
         Vector3 movement = new Vector3(moveHorizontal, moveVertical, 0.0f);
+        if(moveHorizontal > 0)
+        {
+            Vector3 newScale = transform.localScale;
+            newScale.x = -1;
+            transform.localScale = newScale;
+        } else if (moveHorizontal < 0)
+        {
+            Vector3 newScale = transform.localScale;
+            newScale.x = 1;
+            transform.localScale = newScale;
+        }
+        Debug.Log($"MOVE {moveHorizontal}");
+        animator.SetFloat("HorizontalMove", Mathf.Abs(moveHorizontal));
         transform.position += movement * speed * Time.deltaTime;
     }
 
